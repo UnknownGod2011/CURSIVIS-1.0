@@ -10,7 +10,7 @@
 
 Success criteria:
 
-- End-to-end flow uses real Nova response.
+- End-to-end flow uses real Gemini response.
 
 ## Scenario 2: Guided Text Actions
 
@@ -25,7 +25,7 @@ Success criteria:
 1. User triggers with no text selected.
 2. Lasso capture opens and user draws region.
 3. Image sent to backend.
-4. Nova returns caption/analysis.
+4. Gemini returns caption/analysis.
 
 ## Scenario 4: Pixel Color Fallback
 

@@ -13,7 +13,7 @@ public partial class App : Application
     private bool _ownsSingleInstanceMutex;
     private CursorTracker? _cursorTracker;
     private WindowFocusTracker? _windowFocusTracker;
-    private NovaClient? _NovaClient;
+    private GeminiClient? _geminiClient;
     private BrowserAutomationClient? _browserAutomationClient;
     private ExtensionAutomationClient? _extensionAutomationClient;
     private TriggerController? _triggerController;
@@ -55,12 +55,12 @@ public partial class App : Application
             var selectionDetector = new SelectionDetector(clipboardService);
             var lassoSelectionService = new LassoSelectionService();
             var screenCaptureService = new ScreenCaptureService();
-            _NovaClient = new NovaClient();
+            _geminiClient = new GeminiClient();
             _browserAutomationClient = new BrowserAutomationClient();
             _extensionAutomationClient = new ExtensionAutomationClient();
             var activeBrowserAutomationService = new ActiveBrowserAutomationService(clipboardService);
             var voiceCaptureService = new VoiceCaptureService();
-            var voiceCommandPromptService = new VoiceCommandPromptService(_NovaClient, voiceCaptureService);
+            var voiceCommandPromptService = new VoiceCommandPromptService(_geminiClient, voiceCaptureService);
             _orbOverlayWindow = new OrbOverlayWindow();
             _resultPanelWindow = new ResultPanelWindow();
 
@@ -70,7 +70,7 @@ public partial class App : Application
                 _orbOverlayWindow,
                 _resultPanelWindow,
                 clipboardService,
-                _NovaClient,
+                _geminiClient,
                 _browserAutomationClient,
                 _extensionAutomationClient,
                 activeBrowserAutomationService,
@@ -176,7 +176,7 @@ public partial class App : Application
             _singleInstanceMutex.Dispose();
         }
 
-        _NovaClient?.Dispose();
+        _geminiClient?.Dispose();
         _browserAutomationClient?.Dispose();
         _extensionAutomationClient?.Dispose();
         base.OnExit(e);
